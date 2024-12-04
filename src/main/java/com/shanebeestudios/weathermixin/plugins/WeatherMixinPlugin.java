@@ -24,6 +24,10 @@
  */
 package com.shanebeestudios.weathermixin.plugins;
 
+import com.mojang.logging.LogUtils;
+import net.md_5.bungee.api.ChatColor;
+import org.bukkit.Bukkit;
+import org.bukkit.command.ConsoleCommandSender;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.objectweb.asm.tree.ClassNode;
@@ -33,9 +37,10 @@ import org.spongepowered.asm.mixin.extensibility.IMixinInfo;
 import java.util.List;
 import java.util.Set;
 
-public final class CorePlugin implements IMixinConfigPlugin {
+public final class WeatherMixinPlugin implements IMixinConfigPlugin {
     @Override
     public void onLoad(final @NotNull String mixinPackage) {
+        log("Loading WeatherMixin");
     }
 
     @Override
@@ -64,4 +69,20 @@ public final class CorePlugin implements IMixinConfigPlugin {
     @Override
     public void postApply(final @NotNull String targetClassName, final @NotNull ClassNode targetClass, final @NotNull String mixinClassName, final @NotNull IMixinInfo mixinInfo) {
     }
+
+    private static ConsoleCommandSender console;
+
+    @SuppressWarnings({"deprecation", "ConstantValue"})
+    private static void log(String message) {
+        if (console == null && Bukkit.getServer() != null) {
+            console = Bukkit.getServer().getConsoleSender();
+        }
+        if (console == null) {
+            LogUtils.getClassLogger().info(message);
+        } else {
+            String prefix = "§7[§bWeather§3Mixin§7] ";
+            console.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix + message));
+        }
+    }
+
 }
