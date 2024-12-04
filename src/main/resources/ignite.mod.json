@@ -1,7 +1,7 @@
 {
-  "id": "example",
-  "version": "1.0.0",
-  "mixins": [
-    "mixins.example.core.json"
-  ]
+    "id": "WeatherMixin",
+    "version": "1.0.0",
+    "mixins": [
+        "mixins.weathermixin.json"
+    ],"wideners" : ["weathermixin.accesswidener"]
 }

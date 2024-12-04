@@ -1,0 +1,17 @@
+{
+    "required": true,
+    "minVersion": "0.8.5",
+    "package": "com.shanebeestudios.weathermixin.mixins",
+    "plugin": "com.shanebeestudios.weathermixin.plugins.CorePlugin",
+    "target": "@env(DEFAULT)",
+    "compatibilityLevel": "JAVA_21",
+    "server": [
+        "BaseTorchBlockMixin",
+        "BiomeMixin",
+
+        "CropBlockMixin",
+        "IceBlockMixin",
+        "SnowLayerBlockMixin",
+        "WallTorchBlockMixin"
+    ]
+}

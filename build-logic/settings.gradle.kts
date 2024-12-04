@@ -1,4 +1,4 @@
-rootProject.name = "ignite-template-build-logic"
+rootProject.name = "WeatherMixin-logic"
 
 dependencyResolutionManagement {
   repositories {
