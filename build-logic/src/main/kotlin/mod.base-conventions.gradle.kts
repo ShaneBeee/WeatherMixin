@@ -1,46 +1,40 @@
-import com.diffplug.gradle.spotless.FormatExtension
-import java.nio.charset.StandardCharsets
-import java.nio.file.Files
-import java.util.regex.Pattern
-import java.util.stream.Collectors
-
 plugins {
-  `java-library`
-  id("com.diffplug.spotless")
+    `java-library`
+    id("com.diffplug.spotless")
 
-  id("com.github.johnrengelman.shadow")
-  id("io.papermc.paperweight.userdev")
+    id("com.github.johnrengelman.shadow")
+    id("io.papermc.paperweight.userdev")
 }
 
 // Expose version catalog
 val libs = extensions.getByType(org.gradle.accessors.dm.LibrariesForLibs::class)
 
 java {
-  javaTarget(21)
-  withSourcesJar()
+    javaTarget(21)
+    withSourcesJar()
 }
 
 repositories {
-  mavenCentral()
-  maven("https://oss.sonatype.org/content/groups/public/")
-  maven("https://repo.papermc.io/repository/maven-public/")
-  maven("https://repo.spongepowered.org/maven/")
+    mavenCentral()
+    maven("https://oss.sonatype.org/content/groups/public/")
+    maven("https://repo.papermc.io/repository/maven-public/")
+    maven("https://repo.spongepowered.org/maven/")
 }
 
 dependencies {
-  compileOnlyApi(libs.jetbrains.annotations)
+    compileOnlyApi(libs.jetbrains.annotations)
 }
 
 tasks {
-  jar {
-    archiveClassifier.set("dev")
-  }
+    jar {
+        archiveClassifier.set("dev")
+    }
 
-  reobfJar {
-    remapperArgs.add("--mixin")
-  }
+    reobfJar {
+        remapperArgs.add("--mixin")
+    }
 
-  build {
-    dependsOn(reobfJar)
-  }
+    build {
+        dependsOn(reobfJar)
+    }
 }
