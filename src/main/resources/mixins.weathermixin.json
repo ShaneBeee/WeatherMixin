@@ -7,8 +7,6 @@
     "compatibilityLevel": "JAVA_21",
     "server": [
         "BaseTorchBlockMixin",
-        "BiomeMixin",
-
         "CropBlockMixin",
         "IceBlockMixin",
         "SnowLayerBlockMixin",
